@@ -1,0 +1,57 @@
+{% load static %}
+<nav class="navbar header-navbar pcoded-header">
+              <div class="navbar-wrapper">
+                  <div class="navbar-logo">
+                      <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
+                          <i class="ti-menu"></i>
+                      </a>
+                     
+                      <a href="{% url 'dashboard' %}">
+                          <img src="{% static 'assets/images/logo.png'%}" alt="Theme-Logo" height="90" width="200" />
+                      </a>
+                      <a class="mobile-options waves-effect waves-light">
+                          <i class="ti-more"></i>
+                      </a>
+                  </div>
+                
+                  <div class="navbar-container container-fluid">
+                      <ul class="nav-left">
+                     
+                          <li>
+                              <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                                  <i class="ti-fullscreen"></i>
+                              </a>
+                          </li>
+                      </ul>
+                      <ul class="nav-right">
+                         
+                          <li class="user-profile header-notification">
+                              <a href="#!" class="waves-effect waves-light">
+                                  <img src="{% static 'assets/images/avatar-4.jpg'%}" class="img-radius" alt="User-Profile-Image">
+                                  <span>{{user.first_name}} {{user.last_name}}</span>
+                                  <i class="ti-angle-down"></i>
+                              </a>
+                              <ul class="show-notification profile-notification">
+                                  
+                                  <li class="waves-effect waves-light">
+                                      <a href="{% url 'admin_profile' %}">
+                                          <i class="ti-user"></i> Profile
+                                      </a>
+                                  </li>
+                                 <li class="waves-effect waves-light">
+                                      <a href="{% url 'change_password' %}">
+                                          <i class="ti-settings"></i> Change Password
+                                      </a>
+                                  </li>
+                              
+                                  <li class="waves-effect waves-light">
+                                      <a href="{% url 'logout' %}">
+                                          <i class="ti-layout-sidebar-left"></i> Logout
+                                      </a>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>

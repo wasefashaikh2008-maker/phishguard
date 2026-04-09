@@ -1,0 +1,151 @@
+{% extends 'detector/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    
+    <!-- Blocked Site Warning -->
+    <div class="card border-danger shadow-lg">
+      <div class="card-header bg-danger text-white text-center py-4">
+        <i class="fas fa-shield-alt fa-4x mb-3"></i>
+        <h2 class="mb-0">⚠️ ACCESS BLOCKED ⚠️</h2>
+      </div>
+      
+      <div class="card-body text-center p-5">
+        
+        <div class="alert alert-danger mb-4">
+          <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+          <h3>DANGEROUS WEBSITE DETECTED</h3>
+          <p class="lead">This website has been automatically blocked to protect your personal information.</p>
+        </div>
+
+        <div class="mb-4">
+          <h5>URL Scanned:</h5>
+          <code class="bg-light p-2 d-block">{{ url }}</code>
+        </div>
+
+        <div class="mb-4">
+          <h5>Why was this blocked?</h5>
+          <div class="text-start bg-light p-4 rounded">
+            <ul class="list-unstyled">
+              {% for issue in report.critical_issues %}
+              <li class="mb-2"><i class="fas fa-times-circle text-danger me-2"></i> {{ issue }}</li>
+              {% endfor %}
+              {% for warning in report.warnings|slice:":3" %}
+              <li class="mb-2"><i class="fas fa-exclamation-circle text-warning me-2"></i> {{ warning }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <h5>Risk Assessment</h5>
+          <div class="progress mb-3" style="height: 30px;">
+            <div class="progress-bar bg-danger"
+                 role="progressbar"
+                 style="width: {{ report.risk_percentage }}%;">
+              {{ report.risk_percentage }}% Risk
+            </div>
+          </div>
+          <p><strong>Risk Level:</strong> <span class="text-danger">{{ report.risk_level }}</span></p>
+          <p><strong>Safety Score:</strong> {{ report.safe_percentage }}% Safe</p>
+        </div>
+
+        <div class="alert alert-warning">
+          <i class="fas fa-lightbulb me-2"></i>
+          <strong>What should you do?</strong>
+          <p class="mb-0 mt-2">If you were trying to visit a legitimate website, double-check the URL for typos. Cybercriminals often create fake websites with addresses similar to real ones.</p>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="d-grid gap-2 col-md-8 mx-auto">
+          <a href="{% url 'index' %}" class="btn btn-primary btn-lg">
+            <i class="fas fa-search me-2"></i> Check Another URL
+          </a>
+          <button class="btn btn-outline-secondary" onclick="window.history.back()">
+            <i class="fas fa-arrow-left me-2"></i> Go Back
+          </button>
+        </div>
+
+        <div class="mt-4">
+          <small class="text-muted">
+            Blocked by Phishing Detector • Scan ID: {{ report.scan_id }} • {{ report.scan_time }}
+          </small>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Technical Details -->
+    <div class="card mt-4">
+      <div class="card-header bg-info text-white">
+        <h5 class="mb-0"><i class="fas fa-shield-virus me-2"></i> Technical Details</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table table-sm">
+              <tr>
+                <th>Domain:</th>
+                <td>{{ report.technical.server_ip|default:"Unknown" }}</td>
+              </tr>
+              <tr>
+                <th>SSL Issuer:</th>
+                <td>{{ report.technical.ssl_issuer|default:"None" }}</td>
+              </tr>
+              <tr>
+                <th>Domain Age:</th>
+                <td>{{ report.technical.domain_age_days|default:"Unknown" }} days</td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-sm">
+              <tr>
+                <th>Model Score:</th>
+                <td>{{ report.adjusted_score|floatformat:2 }}</td>
+              </tr>
+              <tr>
+                <th>Scan Time:</th>
+                <td>{{ report.scan_time }}</td>
+              </tr>
+              <tr>
+                <th>Scan ID:</th>
+                <td>{{ report.scan_id }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Safety Tips -->
+    <div class="card mt-4">
+      <div class="card-header bg-info text-white">
+        <h5 class="mb-0"><i class="fas fa-shield-virus me-2"></i> Online Safety Tips</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Always check the URL carefully</li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Look for HTTPS in the address</li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Don't click on suspicious links in emails</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Use strong, unique passwords</li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Enable two-factor authentication</li>
+              <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Keep your browser updated</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

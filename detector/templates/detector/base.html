@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Website Phishing Detection System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: #f4f6f9;
+      }
+      /* Navbar */
+      .navbar {
+        background: linear-gradient(45deg, #1e2a56, #0a58ca);
+      }
+      .navbar-brand {
+        font-weight: 600;
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+      }
+      .nav-link {
+        margin-left: 15px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        left: 0;
+        bottom: -4px;
+        background: #fff;
+        transition: width 0.3s;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Alerts */
+      .alert {
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      }
+
+      /* Main container spacing */
+      main.container {
+        min-height: 70vh;
+        margin-top: 30px;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 40px;
+        padding: 20px 0;
+        background: linear-gradient(45deg, #212529, #343a40);
+        color: #ccc;
+        text-align: center;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+      }
+      footer span {
+        color: #0d6efd;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="/">🛡️ Website Phishing Detection System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            {% if user.is_authenticated %}
+              <li class="nav-item"><a class="nav-link" href="/">Check URL</a></li>
+              <li class="nav-item"><a class="nav-link" href="/history/">My History</a></li>
+              <li class="nav-item"><a class="nav-link text-warning" href="/logout/">Logout</a></li>
+            {% else %}
+              <li class="nav-item"><a class="nav-link" href="/">Check URL</a></li>
+              <li class="nav-item"><a class="nav-link" href="/login/">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="/register/">Register</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'admin_login' %}">Admin</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} shadow-sm">
+          {% if message.level_tag %}
+            <b>{{ message.level_tag|title }}:</b>
+          {% endif %}
+          {{ message }}
+        </div>
+      {% endfor %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        Website <span>Phishing Detection System</span> | Secure Your Web
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

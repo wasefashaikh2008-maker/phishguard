@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card"> <div class="card-header">
+                                                         <h2>Yesterday's URL Checks</h2>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+<div class="card-block">
+  
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>URL</th>
+                <th>Result</th>
+                <th>Checked At</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for check in checks %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ check.url }}</td>
+                <td>{{ check.result }}</td>
+                <td>{{ check.created_at }}</td>
+                <td>{{ check.user.username|default:"Anonymous" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No checks done yesterday.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

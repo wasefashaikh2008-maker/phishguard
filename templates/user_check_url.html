@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+                                    <!-- Page body start -->
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>URL Check History</h5>
+                                                        <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
+                                                    </div>
+                                                    <div class="card-block">
+                                                        {% if messages %}
+                        {% for message in messages %}
+                         {% if message.tags == 'error' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      {{message}}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                         </button>
+                          </div>
+                       {% endif %}
+                        {% endfor %}
+                       {% endif %}
+                           {% if messages %}
+                        {% for message in messages %}
+                         {% if message.tags == 'success' %}
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      {{message}}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                            </button>
+                             </div>
+                          {% endif %}
+                           {% endfor %}
+                          {% endif %}
+                                                         <h3>{{ target_user.get_full_name }} Checked URLs</h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>URL</th>
+      <th>Result</th>
+      <th>Score</th>
+      <th>When</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in urlcheck %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td style="max-width:480px; word-wrap:anywhere"><code>{{ r.url }}</code></td>
+      <td>
+        {% if r.result == 'phish' %}
+          <span class="badge bg-danger">Phishing</span>
+        {% else %}
+          <span class="badge bg-success">Legitimate</span>
+        {% endif %}
+      </td>
+      <td>{{ r.score|floatformat:3 }}</td>
+      <td>{{ r.created_at }}</td>
+    </tr>
+    {% empty %}
+      <tr><td colspan="5" class="text-center text-muted">No history yet. Check a URL first.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                     
+                                                            </div>
+         
+
+{% endblock %}

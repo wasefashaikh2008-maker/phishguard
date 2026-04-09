@@ -1,0 +1,34 @@
+{% extends 'detector/base.html' %}
+{% block content %}
+<h3>Your Checked URLs</h3>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>URL</th>
+      <th>Result</th>
+      <th>Score</th>
+      <th>When</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in rows %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td style="max-width:480px; word-wrap:anywhere"><code>{{ r.url }}</code></td>
+      <td>
+        {% if r.result == 'phish' %}
+          <span class="badge bg-danger">Phishing</span>
+        {% else %}
+          <span class="badge bg-success">Legitimate</span>
+        {% endif %}
+      </td>
+      <td>{{ r.score|floatformat:3 }}</td>
+      <td>{{ r.created_at }}</td>
+    </tr>
+    {% empty %}
+      <tr><td colspan="5" class="text-center text-muted">No history yet. Check a URL first.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

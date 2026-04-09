@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-body">
+    <div class="row">
+        <!-- Registered Users -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h4 class="text-c-purple">{{ reguser_count }}</h4>
+                            <h6 class="text-muted m-b-0">Total Registered Users</h6>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i class="fa fa-bar-chart f-28"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-c-purple">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <a href="{% url 'registeres_users' %}"><p class="text-white m-b-0">View Details</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Today's URL Check -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h4 class="text-c-green">{{ today_count }}</h4>
+                            <h6 class="text-muted m-b-0">Today's URL Checks</h6>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i class="fa fa-file-text-o f-28"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-c-green">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <a href="{% url 'today_checks' %}"><p class="text-white m-b-0">View Details</p></a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yesterday's URL Check -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h4 class="text-c-red">{{ yesterday_count }}</h4>
+                            <h6 class="text-muted m-b-0">Yesterday's URL Checks</h6>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i class="fa fa-calendar-check-o f-28"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-c-red">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <a href="{% url 'yesterday_checks' %}"><p class="text-white m-b-0">View Details</p></a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Last 7 Days -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h4 class="text-c-blue">{{ seven_days_count }}</h4>
+                            <h6 class="text-muted m-b-0">Last 7 Days Checks</h6>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i class="fa fa-hand-o-down f-28"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-c-blue">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <a href="{% url 'seven_days_checks' %}"><p class="text-white m-b-0">View Details</p></a>
+                        </div>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- This Month -->
+        
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                           <h4 class="text-c-orange">{{ month_count }}</h4>
+                            <h6 class="text-muted m-b-0">This Month's Checks</h6>
+                        </div>
+                        <div class="col-4 text-right">
+                            <i class="fa fa-hand-o-down f-28"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-c-blue">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <a href="{% url 'month_checks' %}"><p class="text-white m-b-0">View Details</p></a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

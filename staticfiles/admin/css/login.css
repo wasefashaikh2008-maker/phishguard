@@ -1,0 +1,130 @@
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    /* Glass Card */
+    .form-container {
+        background: rgba(20, 20, 20, 0.85);
+        backdrop-filter: blur(15px);
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        width: 380px;
+        color: #fff;
+        animation: fadeIn 0.7s ease-in-out;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 26px;
+        color: #00ff9d;
+        letter-spacing: 1px;
+    }
+
+    /* Inputs */
+    input {
+        width: 100%;
+        padding: 13px;
+        margin-top: 14px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        outline: none;
+        font-size: 15px;
+        background: #0f0f0f;
+        color: #fff;
+        transition: 0.3s ease;
+    }
+
+    input::placeholder {
+        color: #aaa;
+    }
+
+    input:focus {
+        border-color: #00ff9d;
+        box-shadow: 0 0 10px rgba(0, 255, 157, 0.6);
+        transform: scale(1.02);
+    }
+
+    /* Button */
+    button {
+        width: 100%;
+        padding: 13px;
+        background: linear-gradient(135deg, #00ff9d, #00cc7a);
+        color: #000;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 22px;
+        transition: 0.3s ease;
+    }
+
+    button:hover {
+        background: linear-gradient(135deg, #00cc7a, #00995c);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 255, 157, 0.4);
+    }
+
+    /* Links */
+    .links {
+        margin-top: 18px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .links a {
+        color: #00ff9d;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .links a:hover {
+        text-decoration: underline;
+        color: #00cc7a;
+    }
+
+    /* Error Message */
+    .error {
+        background: rgba(255, 0, 0, 0.15);
+        color: #ff4d4d;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 14px;
+        border: 1px solid rgba(255, 0, 0, 0.3);
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 450px) {
+        .form-container {
+            width: 90%;
+            padding: 30px;
+        }
+    }
+</style>

@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Website Phishing Detection System</title>
+   
+  
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="{% static 'assets/pages/waves/css/waves.min.css'%}" type="text/css" media="all">
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap/css/bootstrap.min.css'%}">
+      <!-- waves.css -->
+      <link rel="stylesheet" href="{% static 'assets/pages/waves/css/waves.min.css'%}" type="text/css" media="all">
+      <!-- themify icon -->
+      <link rel="stylesheet" type="text/css" href="{% static 'assets/icon/themify-icons/themify-icons.css'%}">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" type="text/css" href="{% static 'assets/icon/font-awesome/css/font-awesome.min.css'%}">
+      <!-- scrollbar.css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.mCustomScrollbar.css'%}">
+        <!-- am chart export.css -->
+        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css'%}">
+  </head>
+
+  <body>
+
+  <div id="pcoded" class="pcoded">
+      <div class="pcoded-overlay-box"></div>
+      <div class="pcoded-container navbar-wrapper">
+         {% include 'includes/header.html' %}
+
+          <div class="pcoded-main-container">
+              <div class="pcoded-wrapper">
+                  {% include 'includes/sidebar.html' %}
+                  <div class="pcoded-content">
+                      <!-- Page-header start -->
+                      <div class="page-header">
+                          <div class="page-block">
+                              <div class="row align-items-center">
+                                  <div class="col-md-8">
+                                      <div class="page-header-title">
+                                          <h5 class="m-b-10">Dashboard</h5>
+                                          <p class="m-b-0">Welcome to Admin Panel</p>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <ul class="breadcrumb-title">
+                                          <li class="breadcrumb-item">
+                                              <a href="{% url 'dashboard' %}"> <i class="fa fa-home"></i> </a>
+                                          </li>
+                                          <li class="breadcrumb-item"><a href="#!">Dashboard</a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Page-header end -->
+                        <div class="pcoded-inner-content">
+                            <!-- Main-body start -->
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <!-- Page-body start -->
+                                    {% block content %}
+                                    {% endblock %}
+                                    <!-- Page-body end -->
+                                </div>
+                                <div id="styleSelector"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    
+    <!-- Required Jquery -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery/jquery.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery-ui/jquery-ui.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/popper.js/popper.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap/js/bootstrap.min.js'%}"></script>
+
+    <!-- waves js -->
+    <script src="{% static 'assets/pages/waves/js/waves.min.js'%}"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery-slimscroll/jquery.slimscroll.js'%}"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="{% static 'assets/js/modernizr/modernizr.js'%}"></script>
+    <!-- slimscroll js -->
+    <script type="text/javascript" src="{% static 'assets/js/SmoothScroll.js'%}"></script>
+    <script src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js'%}"></script>
+    <!-- Chart js -->
+    <script type="text/javascript" src="{% static 'assets/js/chart.js/Chart.js'%}"></script>
+    <!-- amchart js -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="{% static 'assets/pages/widget/amchart/gauge.js'%}"></script>
+    <script src="{% static 'assets/pages/widget/amchart/serial.js'%}"></script>
+    <script src="{% static 'assets/pages/widget/amchart/light.js'%}"></script>
+    <script src="{% static 'assets/pages/widget/amchart/pie.min.js'%}"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <!-- menu js -->
+    <script src="{% static 'assets/js/pcoded.min.js'%}"></script>
+    <script src="{% static 'assets/js/vertical-layout.min.js'%}"></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="{% static 'assets/pages/dashboard/custom-dashboard.js'%}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/script.js'%}"></script>
+</body>
+
+</html>

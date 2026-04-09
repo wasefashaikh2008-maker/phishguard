@@ -1,0 +1,23 @@
+{% extends 'detector/base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h3 class="mb-3">Website Phishing Detection System</h3>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          <div class="mb-3">
+            {{ form.url.label_tag }} 
+            {{ form.url }}
+          </div>
+          <button class="btn btn-primary">Check Now</button>
+        </form>
+        <p class="text-muted mt-3">
+          Tip: Works best with full URLs. Model uses URL lexical features only (fast, no content fetch).
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

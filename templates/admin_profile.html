@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+/* Page Background */
+.page-body {
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    min-height: 100vh;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 15px;
+    border: none;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    animation: fadeSlide 0.5s ease-in-out;
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+}
+
+.card-header h5 {
+    color: #00ffb3;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Input Fields */
+.form-control {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    transition: 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #00ffb3;
+    box-shadow: 0 0 8px rgba(0,255,179,0.6);
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+}
+
+/* Readonly fields */
+.form-control[readonly] {
+    background: rgba(255,255,255,0.08);
+    cursor: not-allowed;
+}
+
+/* Update Button */
+.btn-primary {
+    background: linear-gradient(135deg, #00ffb3, #00b37d);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,255,179,0.4);
+}
+
+/* Alerts */
+.alert {
+    border-radius: 8px;
+    font-weight: 500;
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: 1px solid rgba(255,193,7,0.3);
+}
+
+/* Animation */
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+
+<!-- Page body start -->
+<div class="page-body">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h5>👤 View or Update Your Profile</h5>
+                </div>
+                <div class="card-block">
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-dismissible fade show" role="alert">
+                                {{message}}
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form class="form-material" method="POST" action="{% url 'profile_update' %}">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="first_name" value="{{user.first_name}}" placeholder="First Name">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" name="last_name" value="{{user.last_name}}" placeholder="Last Name">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <input type="email" class="form-control" readonly name="email" value="{{user.email}}">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" readonly name="username" value="{{user.username}}">
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
